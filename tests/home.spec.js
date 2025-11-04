@@ -34,11 +34,20 @@ test("Verify Subscription in home page", async ({ page }) => {
 })
 
 
-test.only("View Category Products", async({page})=>{
+test("View Category Products", async({page})=>{
  await page.goto("https://automationexercise.com/")
     const homePage = new HomePage(page);
 
    await homePage.verifyCategory();
+
+
+})
+
+test.only("Add to cart from Recommended items", async({page})=>{
+ await page.goto("https://automationexercise.com/")
+    const homePage = new HomePage(page);
+
+   await homePage.addToCartRecommendedItems();
 
 
 })

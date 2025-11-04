@@ -42,6 +42,20 @@ class Home {
         this.menJeansBtn = "//a[@href='/category_products/6'][normalize-space()='Jeans']"
         this.menJeansHeading = "//h2[normalize-space()='Men - Jeans Products']"
 
+
+        this.recommendedItemsHeading = "//div[@class='recommended_items']/h2[text()='recommended items']"
+        this.recommendedAddCart_Prod1 = "//div[@id='recommended-item-carousel']//a[@data-product-id='1']"
+        this.recommendedTitle_Prod1 = "//div[@id='recommended-item-carousel']//a[@data-product-id='1']/preceding-sibling::p"
+        this.recommendedAddCart_Prod2 = "//div[@id='recommended-item-carousel']//a[@data-product-id='2']"
+        this.recommendedTitle_Prod2 = "//div[@id='recommended-item-carousel']//a[@data-product-id='2']/preceding-sibling::p"
+
+        this.cartBtn = "//li//a[@href='/view_cart']"
+
+        this.prod1_cartName = "//tr[@id='product-1']/td[@class='cart_description']//a"
+        this.prod2_cartName = "//tr[@id='product-2']/td[@class='cart_description']//a"
+
+        this.continueBtn2 = "//div[@id='cartModal']//button[@class='btn btn-success close-modal btn-block']"
+
     }
 
     async logoutUser() {
@@ -129,6 +143,38 @@ class Home {
         await this.page.locator(this.womenCategoryBtn).click();
         await this.page.locator(this.womenDressBtn).click();
         await expect(this.page.locator(this.womenDressHeading)).toBeVisible();
+
+    }
+
+
+    async addToCartRecommendedItems() {
+        // await this.page.locator(this.footer).scrollIntoViewIfNeeded();
+        await expect(this.page.locator(this.recommendedItemsHeading)).toBeVisible();
+        await this.page.locator(this.recommendedItemsHeading).scrollIntoViewIfNeeded();
+
+
+        await this.page.locator(this.recommendedAddCart_Prod1).scrollIntoViewIfNeeded();
+        const recommendedTitle_Prod1 = await this.page.locator(this.recommendedTitle_Prod1).textContent();
+
+        await this.page.locator(this.recommendedAddCart_Prod1).click();
+        await this.page.locator(this.continueBtn2).click();
+
+        await this.page.locator(this.recommendedAddCart_Prod2).scrollIntoViewIfNeeded();
+        const recommendedTitle_Prod2 = await this.page.locator(this.recommendedTitle_Prod2).textContent();
+
+        await this.page.locator(this.recommendedAddCart_Prod2).click();
+        await this.page.locator(this.continueBtn2).click();
+
+        await this.page.locator(this.cartBtn).click();
+
+        await expect(this.page).toHaveURL(/view_cart/);
+
+
+        const prod1_cartName = await this.page.locator(this.prod1_cartName).textContent();
+        const prod2_cartName = await this.page.locator(this.prod2_cartName).textContent();
+
+        await expect(recommendedTitle_Prod1).toBe(prod1_cartName);
+        await expect(recommendedTitle_Prod2).toBe(prod2_cartName);
 
     }
 
