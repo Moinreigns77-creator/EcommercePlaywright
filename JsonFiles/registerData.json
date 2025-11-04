@@ -1,0 +1,19 @@
+{
+    "name": "Moin",
+    "email": "Moin1@gmail.com",
+    "title":"Mr",
+    "password":"Moin@123",
+    "day":"26",
+    "month":"January",
+    "year":"2011",
+    "firstName":"Mohammad",
+    "lastName":"Moin",
+    "company":"Google",
+    "address1":"Dharampur",
+    "address2":"RTC colony",
+    "country":"India",
+    "state":"Andhra Pradesh",
+    "city":"Hindupur",
+    "zipcode":"515201",
+    "mobile":"9876543210"
+}
