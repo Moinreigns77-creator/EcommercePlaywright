@@ -43,11 +43,30 @@ test("View Category Products", async({page})=>{
 
 })
 
-test.only("Add to cart from Recommended items", async({page})=>{
+test("Add to cart from Recommended items", async({page})=>{
  await page.goto("https://automationexercise.com/")
     const homePage = new HomePage(page);
 
    await homePage.addToCartRecommendedItems();
+
+
+})
+
+
+test("Verify Scroll Up using 'Arrow' button and Scroll Down functionality", async({page})=>{
+ await page.goto("https://automationexercise.com/")
+    const homePage = new HomePage(page);
+
+   await homePage.verifyScrollUpBtn();
+
+
+})
+
+test.only("Verify Scroll Up and Scroll Down functionality", async({page})=>{
+ await page.goto("https://automationexercise.com/")
+    const homePage = new HomePage(page);
+
+   await homePage.verifyScrollUpWithoutBtn();
 
 
 })

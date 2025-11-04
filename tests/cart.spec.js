@@ -60,7 +60,7 @@ test("Place Order: Login before Checkout", async ({ page }) => {
 })
 
 
-test.only("Remove Products From Cart",async({page})=>{
+test("Remove Products From Cart",async({page})=>{
      await page.goto("https://automationexercise.com/");
 
     // const productPage = new ProductPage(page);
@@ -68,5 +68,45 @@ test.only("Remove Products From Cart",async({page})=>{
     const homePage = new HomePage(page);
 
     await cartPage.removeProductFromCart();
+   
+})
+
+
+test(" Verify address details in checkout page",async({page})=>{
+     await page.goto("https://automationexercise.com/");
+
+    const productPage = new ProductPage(page);
+    const cartPage = new CartPage(page);
+    const homePage = new HomePage(page);
+    const registerPage = new RegisterPage(page);
+
+    await registerPage.registerUser(data.name, data.email, data.title, data.password, data.day, data.month, data.year, data.firstName, data.lastName, data.company, data.address1, data.address2, data.country, data.state, data.city, data.zipcode, data.mobile);
+
+    await productPage.addProducts();
+
+    await cartPage.verifyDeliveryAndBillingAddress();
+
+    await homePage.deleteAccount();
+   
+})
+
+
+test.only("Download Invoice after purchase order",async({page})=>{
+     await page.goto("https://automationexercise.com/");
+
+    const productPage = new ProductPage(page);
+    const cartPage = new CartPage(page);
+    const homePage = new HomePage(page);
+    const registerPage = new RegisterPage(page);
+
+    await registerPage.registerUser(data.name, data.email, data.title, data.password, data.day, data.month, data.year, data.firstName, data.lastName, data.company, data.address1, data.address2, data.country, data.state, data.city, data.zipcode, data.mobile);
+
+    await productPage.addProducts();
+
+    await cartPage.verifyDeliveryAndBillingAddress();
+
+    await cartPage.downloadInvoice();
+
+    await homePage.deleteAccount();
    
 })

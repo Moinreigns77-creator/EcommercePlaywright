@@ -56,6 +56,11 @@ class Home {
 
         this.continueBtn2 = "//div[@id='cartModal']//button[@class='btn btn-success close-modal btn-block']"
 
+        this.scrollUpBtn = "//a[@id='scrollUp']"
+        this.automationPracticeHeading = "(//h2[normalize-space()='Full-Fledged practice website for Automation Engineers'])[1]"
+
+
+
     }
 
     async logoutUser() {
@@ -176,6 +181,26 @@ class Home {
         await expect(recommendedTitle_Prod1).toBe(prod1_cartName);
         await expect(recommendedTitle_Prod2).toBe(prod2_cartName);
 
+    }
+
+    async verifyScrollUpBtn() {
+        await expect(this.page.locator(this.homeBtn)).toBeVisible();
+
+        await this.page.locator(this.footer).scrollIntoViewIfNeeded();
+
+        await this.page.locator(this.scrollUpBtn).click();
+
+        await expect(this.page.locator(this.automationPracticeHeading)).toBeVisible();
+    }
+
+     async verifyScrollUpWithoutBtn() {
+        await expect(this.page.locator(this.homeBtn)).toBeVisible();
+
+        await this.page.locator(this.footer).scrollIntoViewIfNeeded();
+
+        await this.page.locator(this.homeBtn).scrollIntoViewIfNeeded();
+
+        await expect(this.page.locator(this.automationPracticeHeading)).toBeVisible();
     }
 
 

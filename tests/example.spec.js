@@ -18,13 +18,4 @@ test('get started link', async ({ page }) => {
   // Expects page to have a heading with the name of Installation.
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
 
-  const arr =await page.$$("")
-
-  for(let i=0;i<arr.length;i++){
-    const name = arr[i].textContent();
-  }
-
-
-  await page.locator("").allTextContents()
-
 });
